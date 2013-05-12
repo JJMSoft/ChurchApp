@@ -46,53 +46,48 @@ public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
     private List<UserGroup> userGroupList;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lidLeader")
     private List<LeaderGroup> leaderGroupList;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
     private List<UserRole> userRoleList;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
     private List<Consolidation> consolidationList;
-    
     private static final long serialVersionUID = 1L;
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_User")
     private Integer idUser;
-    
     @Column(name = "name")
     private String name;
-    
     @Column(name = "first_Name")
     private String firstName;
-    
     @Column(name = "last_Name")
     private String lastName;
-    
     @Column(name = "email")
     private String email;
-    
     @Column(name = "phone")
     private Integer phone;
-    
     @Column(name = "cell_Phone")
     private Integer cellPhone;
-    
     @Column(name = "birth_Day")
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthDay;
-    
     @Column(name = "user_Name")
     private String userName;
-    
     @Column(name = "password")
     private String password;
 
     public User() {
+    }
+
+    public User(String name, String firstName, String lastName, String email, String phone, String cellphone) {
+        setName(name);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setPhone(idUser);
+        setCellPhone(cellPhone);
     }
 
     public User(Integer idUser) {
@@ -239,5 +234,4 @@ public class User implements Serializable {
     public void setConsolidationList(List<Consolidation> consolidationList) {
         this.consolidationList = consolidationList;
     }
-    
 }

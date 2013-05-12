@@ -60,17 +60,12 @@ public class BaseJDialog extends javax.swing.JDialog {
         super(parent, modal);
         this.parent = parent;
         initComponents();
-
         setInstructions(instructions);
-
+        setTitleInstruction(title);
         lblClassName.setText(getClass().getSimpleName());
-
         westBottomPanel.remove(progressBar);
-
-
         closeListener = new CloseWindowListener();
         addWindowListener(closeListener);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -90,9 +85,6 @@ public class BaseJDialog extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         lblClassName = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        btnPrintScreen = new javax.swing.JButton();
-        btnSecurity = new javax.swing.JButton();
-        btnHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -150,39 +142,6 @@ public class BaseJDialog extends javax.swing.JDialog {
         jSeparator2.setPreferredSize(new java.awt.Dimension(2, 20));
         actionsPanel.add(jSeparator2);
 
-        btnPrintScreen.setToolTipText("Print a Screen Shot");
-        btnPrintScreen.setContentAreaFilled(false);
-        btnPrintScreen.setPreferredSize(new java.awt.Dimension(25, 25));
-        btnPrintScreen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintScreenActionPerformed(evt);
-            }
-        });
-        actionsPanel.add(btnPrintScreen);
-
-        btnSecurity.setToolTipText("Add Security to this form");
-        btnSecurity.setContentAreaFilled(false);
-        btnSecurity.setEnabled(false);
-        btnSecurity.setName("btnSecurity"); // NOI18N
-        btnSecurity.setPreferredSize(new java.awt.Dimension(25, 25));
-        btnSecurity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSecurityActionPerformed(evt);
-            }
-        });
-        actionsPanel.add(btnSecurity);
-        btnSecurity.getAccessibleContext().setAccessibleName("btnSecurity");
-
-        btnHelp.setToolTipText("Help");
-        btnHelp.setContentAreaFilled(false);
-        btnHelp.setPreferredSize(new java.awt.Dimension(25, 25));
-        btnHelp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHelpActionPerformed(evt);
-            }
-        });
-        actionsPanel.add(btnHelp);
-
         centerBottomPanel.add(actionsPanel, java.awt.BorderLayout.CENTER);
 
         bottomPanel.add(centerBottomPanel, java.awt.BorderLayout.CENTER);
@@ -201,9 +160,6 @@ public class BaseJDialog extends javax.swing.JDialog {
         }
     }
 
-	private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
-	}//GEN-LAST:event_btnHelpActionPerformed
-
     private void btnSecurityActionPerformed(java.awt.event.ActionEvent evt) {
     }
 
@@ -221,11 +177,12 @@ public class BaseJDialog extends javax.swing.JDialog {
         });
     }
 
-    protected void setTitleInstruction(String title) {
-        //lblTitle.setText(title);
+    protected final void setTitleInstruction(String title) {
+        lblTitle.setText(title);
     }
 
-    protected void setInstructions(String instructions) {
+    protected final void setInstructions(String instructions) {
+        lblInstructions.setText(instructions);
     }
 
     public String getMode() {
@@ -352,9 +309,6 @@ public class BaseJDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionsPanel;
     private javax.swing.JPanel bottomPanel;
-    protected javax.swing.JButton btnHelp;
-    protected javax.swing.JButton btnPrintScreen;
-    protected javax.swing.JButton btnSecurity;
     private javax.swing.JPanel centerBottomPanel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JSeparator jSeparator1;

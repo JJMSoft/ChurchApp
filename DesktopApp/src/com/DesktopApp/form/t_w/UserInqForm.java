@@ -80,10 +80,11 @@ public class UserInqForm extends BaseJInternalFrame {
         dPanel1.setPreferredSize(new java.awt.Dimension(700, 100));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setPreferredSize(new java.awt.Dimension(100, 125));
+        jPanel1.setPreferredSize(new java.awt.Dimension(100, 135));
+        jPanel1.setVerifyInputWhenFocusTarget(false);
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jTabbedPane1.setPreferredSize(new java.awt.Dimension(80, 50));
+        jTabbedPane1.setPreferredSize(new java.awt.Dimension(80, 70));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setPreferredSize(new java.awt.Dimension(628, 48));
@@ -112,11 +113,12 @@ public class UserInqForm extends BaseJInternalFrame {
 
         jPanel1.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel6.setPreferredSize(new java.awt.Dimension(633, 30));
-        jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel6.setPreferredSize(new java.awt.Dimension(633, 40));
+        jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/DesktopApp/Icon/search.png"))); // NOI18N
         btnSearch.setText("Buscar");
-        btnSearch.setPreferredSize(new java.awt.Dimension(160, 25));
+        btnSearch.setPreferredSize(new java.awt.Dimension(120, 30));
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
@@ -139,12 +141,19 @@ public class UserInqForm extends BaseJInternalFrame {
 
         jPanel3.setPreferredSize(new java.awt.Dimension(394, 40));
 
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/DesktopApp/Icon/userAdd.png"))); // NOI18N
         btnAdd.setText("Agregar");
-        btnAdd.setPreferredSize(new java.awt.Dimension(95, 25));
+        btnAdd.setPreferredSize(new java.awt.Dimension(120, 30));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnAdd);
 
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/DesktopApp/Icon/userEdit.png"))); // NOI18N
         btnEdit.setText("Editar");
-        btnEdit.setPreferredSize(new java.awt.Dimension(95, 25));
+        btnEdit.setPreferredSize(new java.awt.Dimension(120, 30));
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
@@ -152,12 +161,14 @@ public class UserInqForm extends BaseJInternalFrame {
         });
         jPanel3.add(btnEdit);
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/DesktopApp/Icon/userDelete.png"))); // NOI18N
         btnDelete.setText("Delete");
-        btnDelete.setPreferredSize(new java.awt.Dimension(95, 25));
+        btnDelete.setPreferredSize(new java.awt.Dimension(120, 30));
         jPanel3.add(btnDelete);
 
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/DesktopApp/Icon/cancel.png"))); // NOI18N
         btnClose.setText("Cerrar");
-        btnClose.setPreferredSize(new java.awt.Dimension(95, 25));
+        btnClose.setPreferredSize(new java.awt.Dimension(120, 30));
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -173,41 +184,38 @@ public class UserInqForm extends BaseJInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        if (validateField()) {
-            //jTable1.clearSelection();
-
-            new UserInqFormModelTable(jTable1);
-            search(btnSearch);
-
-        }
+        new UserInqFormModelTable(jTable1);
+        search(btnSearch);
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    public boolean validateField() {
-        return true;
-    }
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int row = jTable1.getSelectedRow();
-       
+
         if (row > -1) {
             Integer key = (Integer) jTable1.getValueAt(row, 0);
             UserForm f = new UserForm(WindowsManager.get(), key);
             ContainerUtil.setDefaultValues(f);
         }
-
+        search(btnSearch);
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
         this.dispose();
     }//GEN-LAST:event_formInternalFrameClosed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        UserForm f = new UserForm(WindowsManager.get(), 0);
+        ContainerUtil.setDefaultValues(f);
+        search(btnSearch);
+    }//GEN-LAST:event_btnAddActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClose;
@@ -230,10 +238,12 @@ public class UserInqForm extends BaseJInternalFrame {
 
     @Override
     public void doPopulateInquiry() {
-        //jTable1.setModel(UserInqFormModelTable.getModel());
-        List<User> list = UserController.getUserByName(txtName.getText().trim());
-        UserInqFormModelTable.setTable(jTable1, list);
+        if (txtName.getText().trim().length() > 0) {
+            List<User> list = UserController.getUserByName(txtName.getText().trim());
+            UserInqFormModelTable.setTable(jTable1, list);
+        } else {
+            List<User> list = UserController.getAllUser();
+            UserInqFormModelTable.setTable(jTable1, list);
+        }
     }
-
-
 }

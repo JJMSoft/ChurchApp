@@ -51,8 +51,9 @@ public class LoginForm_1 extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setPreferredSize(new java.awt.Dimension(0, 40));
 
-        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/DesktopApp/Icon/cancelar.png"))); // NOI18N
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/DesktopApp/Icon/cancel.png"))); // NOI18N
         btnClose.setText("Cancelar");
+        btnClose.setPreferredSize(new java.awt.Dimension(120, 30));
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -60,8 +61,9 @@ public class LoginForm_1 extends javax.swing.JFrame {
         });
         jPanel1.add(btnClose);
 
+        btnAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/DesktopApp/Icon/accept_1.png"))); // NOI18N
         btnAccept.setText("Aceptar");
-        btnAccept.setPreferredSize(new java.awt.Dimension(95, 25));
+        btnAccept.setPreferredSize(new java.awt.Dimension(120, 30));
         btnAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAcceptActionPerformed(evt);

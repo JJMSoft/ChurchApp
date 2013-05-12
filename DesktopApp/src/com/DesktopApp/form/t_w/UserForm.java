@@ -21,7 +21,7 @@ public class UserForm extends BaseJDialog {
     private Integer id;
 
     public UserForm(JFrame parent, Integer id) {
-        super(parent, true, "", "");
+        super(parent, true, "Mantenimiento de Usuarios", "Ingrese los valores que desea modificar");
         this.id = id;
         initComponents();
         customInit();
@@ -54,8 +54,9 @@ public class UserForm extends BaseJDialog {
         btnClose = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(508, 440));
+        setPreferredSize(new java.awt.Dimension(508, 460));
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(null);
         jPanel2.add(txtName);
         txtName.setBounds(120, 20, 340, 25);
@@ -96,8 +97,11 @@ public class UserForm extends BaseJDialog {
 
         dPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/DesktopApp/Icon/cancel.png"))); // NOI18N
         btnClose.setText("Cerrar");
-        btnClose.setPreferredSize(new java.awt.Dimension(95, 25));
+        btnClose.setPreferredSize(new java.awt.Dimension(150, 30));
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -105,8 +109,14 @@ public class UserForm extends BaseJDialog {
         });
         jPanel3.add(btnClose);
 
-        btnAdd.setText("Actualizar");
-        btnAdd.setPreferredSize(new java.awt.Dimension(95, 25));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/DesktopApp/Icon/save.png"))); // NOI18N
+        btnAdd.setText("Actualizar         ");
+        btnAdd.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnAdd);
 
         dPanel1.add(jPanel3, java.awt.BorderLayout.SOUTH);
@@ -119,6 +129,10 @@ public class UserForm extends BaseJDialog {
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClose;
@@ -140,13 +154,22 @@ public class UserForm extends BaseJDialog {
     // End of variables declaration//GEN-END:variables
 
     private void customInit() {
-        User user = UserController.getUserById(id);
 
-        txtName.setText(user.getName());
-        txtFirstName.setText(user.getFirstName());
-        txtLastName.setText(user.getLastName());
-        txtEmail.setText(user.getEmail());
-        txtPhone.setText("" + user.getPhone());
-        txtCellPhone.setText("" + user.getCellPhone());
+        if (id > 0) {
+            User user = UserController.getUserById(id);
+            txtName.setText(user.getName());
+            txtFirstName.setText(user.getFirstName());
+            txtLastName.setText(user.getLastName());
+            txtEmail.setText(user.getEmail());
+            txtPhone.setText("" + user.getPhone());
+            txtCellPhone.setText("" + user.getCellPhone());
+            btnAdd.setText("Actualizar");
+        } else {
+            btnAdd.setText("Gurdar");
+            UserController.saveUser(txtName.getText(), txtFirstName.getText(), 
+                    txtLastName.getText(), txtEmail.getText(), txtPhone.getText(),
+                    txtCellPhone.getText());
+        }
+
     }
 }

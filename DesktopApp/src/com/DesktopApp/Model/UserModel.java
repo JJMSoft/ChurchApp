@@ -21,4 +21,12 @@ public class UserModel {
     public static User getUserById(Integer id) {
         return new UserDAOImpl().getUserById(id);
     }
+
+    public static List<User> getAllUser() {
+        return new UserDAOImpl().getAllUser();
+    }
+
+    public static void save(User user) {
+        new UserDAOImpl().save(user);
+    }
 }

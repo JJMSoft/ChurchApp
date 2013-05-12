@@ -14,6 +14,12 @@ import java.util.List;
 public interface UserDAO {
 
     public User getSessionUser(String userName, String password);
+
     public List<User> getUserByName(String name);
+
     public User getUserById(Integer id);
+
+    public List<User> getAllUser();
+    
+    public void save(User user);
 }
