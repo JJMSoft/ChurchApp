@@ -64,6 +64,11 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
           <SubComponents>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jButton1"/>
+              </Properties>
+            </Component>
             <Component class="javax.swing.JButton" name="btnAceptar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Aceptar"/>

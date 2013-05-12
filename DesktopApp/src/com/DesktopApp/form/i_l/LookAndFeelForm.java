@@ -8,6 +8,7 @@ import com.DesktopApp.Factory.FactoryLookAndFeel;
 import com.DesktopApp.InternalFrame.BaseJInternalFrame;
 import com.DesktopApp.ConstantUtils.WindowsManager;
 import com.DesktopApp.ConstantUtils.ConstantsLookAndFeel;
+import com.DesktopApp.ConstantUtils.Prefs;
 import com.itgp.mvc.DSetErrorEvent;
 import java.io.IOException;
 import java.text.ParseException;
@@ -47,6 +48,7 @@ public class LookAndFeelForm extends BaseJInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         cmbLookAndFeel = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(514, 216));
@@ -56,6 +58,9 @@ public class LookAndFeelForm extends BaseJInternalFrame {
         jPanel3.add(cmbLookAndFeel);
 
         dPanel2.add(jPanel3, java.awt.BorderLayout.CENTER);
+
+        jButton1.setText("jButton1");
+        jPanel4.add(jButton1);
 
         btnAceptar.setText("Aceptar");
         btnAceptar.setPreferredSize(new java.awt.Dimension(95, 25));
@@ -74,12 +79,12 @@ public class LookAndFeelForm extends BaseJInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        String lookAndFeel = (String) cmbLookAndFeel.getSelectedItem();
         try {
-            UIManager.setLookAndFeel((FactoryLookAndFeel.getLookAndFeel((String) cmbLookAndFeel.getSelectedItem())));
+            UIManager.setLookAndFeel((FactoryLookAndFeel.getLookAndFeel(lookAndFeel)));
             SwingUtilities.updateComponentTreeUI(WindowsManager.get());
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(LookAndFeelForm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
+            Prefs.put("lookAndFeel", lookAndFeel);
+        } catch (UnsupportedLookAndFeelException | ParseException ex) {
             Logger.getLogger(LookAndFeelForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
@@ -87,6 +92,7 @@ public class LookAndFeelForm extends BaseJInternalFrame {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JComboBox cmbLookAndFeel;
     private com.itgp.mvc.DPanel dPanel2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

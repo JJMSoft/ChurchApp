@@ -9,8 +9,6 @@ import com.DesktopApp.Entity.User;
 import com.DesktopApp.Herency.GeneralDAO;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**

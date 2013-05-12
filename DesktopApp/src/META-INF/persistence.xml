@@ -3,6 +3,20 @@
   <persistence-unit name="DesktopAppPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.DesktopApp.Entity.User</class>
+    <class>com.DesktopApp.Entity.Role</class>
+    <class>com.DesktopApp.Entity.UserGroup</class>
+    <class>com.DesktopApp.Entity.Province</class>
+    <class>com.DesktopApp.Entity.UserRole</class>
+    <class>com.DesktopApp.Entity.SubRedRed</class>
+    <class>com.DesktopApp.Entity.SubRed</class>
+    <class>com.DesktopApp.Entity.Group</class>
+    <class>com.DesktopApp.Entity.Red</class>
+    <class>com.DesktopApp.Entity.LeaderGroup</class>
+    <class>com.DesktopApp.Entity.District</class>
+    <class>com.DesktopApp.Entity.RolePermission</class>
+    <class>com.DesktopApp.Entity.Canton</class>
+    <class>com.DesktopApp.Entity.Permission</class>
+    <class>com.DesktopApp.Entity.Consolidation</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ccivida?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value="rocketadmin"/>

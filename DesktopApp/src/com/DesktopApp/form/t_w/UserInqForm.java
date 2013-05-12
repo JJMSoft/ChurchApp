@@ -4,6 +4,7 @@
  */
 package com.DesktopApp.form.t_w;
 
+import com.DesktopApp.ConstantUtils.WindowsManager;
 import com.DesktopApp.Controller.UserController;
 import com.DesktopApp.Entity.User;
 import com.DesktopApp.InternalFrame.BaseJInternalFrame;
@@ -190,10 +191,10 @@ public class UserInqForm extends BaseJInternalFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int row = jTable1.getSelectedRow();
-        System.err.println();
+       
         if (row > -1) {
             Integer key = (Integer) jTable1.getValueAt(row, 0);
-            UserForm f = new UserForm(key);
+            UserForm f = new UserForm(WindowsManager.get(), key);
             ContainerUtil.setDefaultValues(f);
         }
 

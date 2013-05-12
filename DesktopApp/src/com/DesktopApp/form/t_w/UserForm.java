@@ -4,25 +4,25 @@
  */
 package com.DesktopApp.form.t_w;
 
-
-import javax.swing.JDialog;
+import com.DesktopApp.Controller.UserController;
+import com.DesktopApp.Entity.User;
+import com.DesktopApp.InternalFrame.BaseJDialog;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Jonathan
  */
-public class UserForm extends JDialog {
+public class UserForm extends BaseJDialog {
 
     /**
      * Creates new form UserForm
      */
     private Integer id;
 
-    public UserForm(Integer id) {
-
-
+    public UserForm(JFrame parent, Integer id) {
+        super(parent, true, "", "");
         this.id = id;
-
         initComponents();
         customInit();
     }
@@ -36,6 +36,7 @@ public class UserForm extends JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dPanel1 = new com.itgp.mvc.DPanel();
         jPanel2 = new javax.swing.JPanel();
         txtName = new javax.swing.JTextField();
         lblName = new javax.swing.JLabel();
@@ -52,6 +53,8 @@ public class UserForm extends JDialog {
         jPanel3 = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(508, 440));
 
         jPanel2.setLayout(null);
         jPanel2.add(txtName);
@@ -91,7 +94,7 @@ public class UserForm extends JDialog {
         jPanel2.add(txtEmail);
         txtEmail.setBounds(120, 140, 340, 25);
 
-        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
+        dPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         btnClose.setText("Cerrar");
         btnClose.setPreferredSize(new java.awt.Dimension(95, 25));
@@ -106,7 +109,9 @@ public class UserForm extends JDialog {
         btnAdd.setPreferredSize(new java.awt.Dimension(95, 25));
         jPanel3.add(btnAdd);
 
-        getContentPane().add(jPanel3, java.awt.BorderLayout.SOUTH);
+        dPanel1.add(jPanel3, java.awt.BorderLayout.SOUTH);
+
+        getContentPane().add(dPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -117,6 +122,7 @@ public class UserForm extends JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClose;
+    private com.itgp.mvc.DPanel dPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblName;
@@ -134,14 +140,13 @@ public class UserForm extends JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void customInit() {
-        /*User user = UserController.getUserById(id);
+        User user = UserController.getUserById(id);
 
         txtName.setText(user.getName());
         txtFirstName.setText(user.getFirstName());
         txtLastName.setText(user.getLastName());
         txtEmail.setText(user.getEmail());
         txtPhone.setText("" + user.getPhone());
-        txtCellPhone.setText("" + user.getCellPhone());*/
-
+        txtCellPhone.setText("" + user.getCellPhone());
     }
 }

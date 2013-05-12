@@ -1,8 +1,4 @@
-/*
- * RLMBaseJFrame_1.java
- *
- * Created on October 3, 2006, 12:36 PM
- */
+package com.DesktopApp.InternalFrame;
 
 import com.DesktopApp.Utils.SwingWorkers;
 import static java.awt.Color.*;
@@ -45,7 +41,7 @@ import javax.swing.JTable;
 /**
  * @author rlynn
  */
-public class RLMBaseJDialog extends javax.swing.JDialog {
+public class BaseJDialog extends javax.swing.JDialog {
 
     private static final long serialVersionUID = 8204001776423916608L;
     protected boolean updating = false;
@@ -60,16 +56,30 @@ public class RLMBaseJDialog extends javax.swing.JDialog {
     /**
      * Creates new form RLMBaseJFrame_1
      */
-    public RLMBaseJDialog(java.awt.Frame parent, boolean modal, String title, String instructions) {
+    public BaseJDialog(java.awt.Frame parent, boolean modal, String title, String instructions) {
+        super(parent, modal);
+        this.parent = parent;
+        initComponents();
+
+        setInstructions(instructions);
+
+        lblClassName.setText(getClass().getSimpleName());
+
+        westBottomPanel.remove(progressBar);
+
+
+        closeListener = new CloseWindowListener();
+        addWindowListener(closeListener);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        lblIcon1 = new javax.swing.JLabel();
-        infoPanel1 = new javax.swing.JPanel();
-        lblTitle2 = new javax.swing.JLabel();
+        topPanel = new javax.swing.JPanel();
+        infoPanel = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        lblInstructions = new javax.swing.JLabel();
         bottomPanel = new javax.swing.JPanel();
         westBottomPanel = new javax.swing.JPanel();
         lblMode = new javax.swing.JLabel();
@@ -86,23 +96,25 @@ public class RLMBaseJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        topPanel.setBackground(new java.awt.Color(255, 255, 255));
+        topPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        topPanel.setPreferredSize(new java.awt.Dimension(100, 80));
+        topPanel.setLayout(new java.awt.BorderLayout());
 
-        lblIcon1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/cypresscreek/resources/images/wizard-logo.gif"))); // NOI18N
-        jPanel1.add(lblIcon1, java.awt.BorderLayout.EAST);
+        infoPanel.setOpaque(false);
+        infoPanel.setLayout(new java.awt.BorderLayout());
 
-        infoPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 8, 1, 1));
-        infoPanel1.setOpaque(false);
-        infoPanel1.setLayout(new java.awt.BorderLayout());
-        jPanel1.add(infoPanel1, java.awt.BorderLayout.CENTER);
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(0, 0, 204));
+        lblTitle.setText("Title");
+        infoPanel.add(lblTitle, java.awt.BorderLayout.NORTH);
 
-        lblTitle2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblTitle2.setForeground(new java.awt.Color(0, 0, 204));
-        lblTitle2.setText("Title");
-        jPanel1.add(lblTitle2, java.awt.BorderLayout.NORTH);
+        lblInstructions.setText("Instructions");
+        infoPanel.add(lblInstructions, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.NORTH);
+        topPanel.add(infoPanel, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(topPanel, java.awt.BorderLayout.NORTH);
 
         bottomPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         bottomPanel.setLayout(new java.awt.BorderLayout());
@@ -138,7 +150,6 @@ public class RLMBaseJDialog extends javax.swing.JDialog {
         jSeparator2.setPreferredSize(new java.awt.Dimension(2, 20));
         actionsPanel.add(jSeparator2);
 
-        btnPrintScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/cypresscreek/resources/images/print.gif"))); // NOI18N
         btnPrintScreen.setToolTipText("Print a Screen Shot");
         btnPrintScreen.setContentAreaFilled(false);
         btnPrintScreen.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -149,7 +160,6 @@ public class RLMBaseJDialog extends javax.swing.JDialog {
         });
         actionsPanel.add(btnPrintScreen);
 
-        btnSecurity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/cypresscreek/resources/images/lock.png"))); // NOI18N
         btnSecurity.setToolTipText("Add Security to this form");
         btnSecurity.setContentAreaFilled(false);
         btnSecurity.setEnabled(false);
@@ -163,7 +173,6 @@ public class RLMBaseJDialog extends javax.swing.JDialog {
         actionsPanel.add(btnSecurity);
         btnSecurity.getAccessibleContext().setAccessibleName("btnSecurity");
 
-        btnHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/cypresscreek/resources/images/about.gif"))); // NOI18N
         btnHelp.setToolTipText("Help");
         btnHelp.setContentAreaFilled(false);
         btnHelp.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -207,7 +216,7 @@ public class RLMBaseJDialog extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RLMBaseJDialog(new javax.swing.JFrame(), true, "", "").setVisible(true);
+                new BaseJDialog(new javax.swing.JFrame(), true, "", "").setVisible(true);
             }
         });
     }
@@ -338,7 +347,7 @@ public class RLMBaseJDialog extends javax.swing.JDialog {
      * @param instructions
      */
     protected void setInstructionTitle(String instructions) {
-       // this.lblTestSystem.setText(instructions);
+        // this.lblTestSystem.setText(instructions);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionsPanel;
@@ -347,16 +356,16 @@ public class RLMBaseJDialog extends javax.swing.JDialog {
     protected javax.swing.JButton btnPrintScreen;
     protected javax.swing.JButton btnSecurity;
     private javax.swing.JPanel centerBottomPanel;
-    private javax.swing.JPanel infoPanel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel infoPanel;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblClassName;
     private javax.swing.JLabel lblForm;
-    private javax.swing.JLabel lblIcon1;
+    protected javax.swing.JLabel lblInstructions;
     protected javax.swing.JLabel lblMode;
-    protected javax.swing.JLabel lblTitle2;
+    protected javax.swing.JLabel lblTitle;
     protected javax.swing.JProgressBar progressBar;
+    protected javax.swing.JPanel topPanel;
     private javax.swing.JPanel westBottomPanel;
     // End of variables declaration//GEN-END:variables
 

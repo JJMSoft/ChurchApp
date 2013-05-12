@@ -6,7 +6,9 @@ package com.DesktopApp.Entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -39,29 +43,52 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findByUserName", query = "SELECT u FROM User u WHERE u.userName = :userName"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
 public class User implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
+    private List<UserGroup> userGroupList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lidLeader")
+    private List<LeaderGroup> leaderGroupList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
+    private List<UserRole> userRoleList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
+    private List<Consolidation> consolidationList;
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_User")
     private Integer idUser;
+    
     @Column(name = "name")
     private String name;
+    
     @Column(name = "first_Name")
     private String firstName;
+    
     @Column(name = "last_Name")
     private String lastName;
+    
     @Column(name = "email")
     private String email;
+    
     @Column(name = "phone")
     private Integer phone;
+    
     @Column(name = "cell_Phone")
     private Integer cellPhone;
+    
     @Column(name = "birth_Day")
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthDay;
+    
     @Column(name = "user_Name")
     private String userName;
+    
     @Column(name = "password")
     private String password;
 
@@ -175,6 +202,42 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "com.DesktopApp.Entity.User[ idUser=" + idUser + " ]";
+    }
+
+    @XmlTransient
+    public List<UserGroup> getUserGroupList() {
+        return userGroupList;
+    }
+
+    public void setUserGroupList(List<UserGroup> userGroupList) {
+        this.userGroupList = userGroupList;
+    }
+
+    @XmlTransient
+    public List<LeaderGroup> getLeaderGroupList() {
+        return leaderGroupList;
+    }
+
+    public void setLeaderGroupList(List<LeaderGroup> leaderGroupList) {
+        this.leaderGroupList = leaderGroupList;
+    }
+
+    @XmlTransient
+    public List<UserRole> getUserRoleList() {
+        return userRoleList;
+    }
+
+    public void setUserRoleList(List<UserRole> userRoleList) {
+        this.userRoleList = userRoleList;
+    }
+
+    @XmlTransient
+    public List<Consolidation> getConsolidationList() {
+        return consolidationList;
+    }
+
+    public void setConsolidationList(List<Consolidation> consolidationList) {
+        this.consolidationList = consolidationList;
     }
     
 }
